@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ffe6e6, #ffb3b3);
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .flower {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 30px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .flower svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .text {
+            font-size: 2.5em;
+            color: #ff1a1a;
+            text-align: center;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: linear-gradient(45deg, #ff4d6b, #ff3355);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+            position: absolute;
+        }
+
+        .counter {
+            margin-top: 20px;
+            color: #ff4d6b;
+            font-size: 1.2em;
+        }
+
+        .games-container {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-title {
+            color: #ff4d6b;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .game-description {
+            color: #666;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="valentine-container">
+        <div class="row">
+            <div class="flower">
+                <svg viewBox="0 0 100 100">
+                    <path d="M50 50 Q65 35 50 20 Q35 35 50 50" fill="#ff4d6b" transform="rotate(0 50 50)"></path>
+                    <path d="M50 50 Q65 35 50 20 Q35 35 50 50" fill="#ff4d6b" transform="rotate(72 50 50)"></path>
+                    <path d="M50 50 Q65 35 50 20 Q35 35 50 50" fill="#ff4d6b" transform="rotate(144 50 50)"></path>
+                    <path d="M50 50 Q65 35 50 20 Q35 35 50 50" fill="#ff4d6b" transform="rotate(216 50 50)"></path>
+                    <path d="M50 50 Q65 35 50 20 Q35 35 50 50" fill="#ff4d6b" transform="rotate(288 50 50)"></path>
+                    <circle cx="50" cy="50" r="8" fill="#ffd700"></circle>
+                </svg>
+            </div>
+            <img src="https://i.giphy.com/Ie4CIIvQS0bk3zwZlM.webp" alt="">
+        </div>
+
+        <div class="text">Ponyo valentine? 💝</div>
+        <button class="button" id="yes-button">YESSSSS</button>
+        <div class="counter" id="click-counter"></div>
+    </div>
+
+    <div class="games-container" id="games-container">
+        <h1 class="text">LET'S PLAY OVERCOOKED! :D</h1>
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWZlbDJnN3N0em5wdGpocHdiNzdrbDB6NjB4YTlwbnVyeW43aDJhcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QslvgnXBkA3nMXn1YE/giphy.gif"
+            alt="">
+        <br>
+        <p>Thank you so much for being with me for the past 7 years! Here's to more brainrotting together!</p>
+        <div class="games-list">
+            <div class="game-card">
+                <a class="game-description"
+                    href="https://store.steampowered.com/app/728880/Overcooked_2/" target="_blank" rel="noreferrer">Overcooked PONYOOOOOOOOOOOO</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var games = [
+            { title: "Overcooked Ponyo", description: "https://store.steampowered.com/app/728880/Overcooked_2/" },
+        ];
+
+        var clickCount = 0;
+        var button = document.getElementById('yes-button');
+        var flower = document.querySelector('.flower')
+        var counter = document.getElementById('click-counter');
+        var valentineContainer = document.getElementById('valentine-container');
+        var gamesContainer = document.getElementById('games-container');
+        var gamesList = document.getElementById('games-list');
+
+        function createGameCards() {
+            for (var i = 0; i < games.length; i++) {
+                var gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+
+                var titleDiv = document.createElement('div');
+                titleDiv.className = 'game-title';
+                titleDiv.textContent = games[i].title;
+
+                var descDiv = document.createElement('div');
+                descDiv.className = 'game-description';
+                descDiv.textContent = games[i].description;
+
+                gameCard.appendChild(titleDiv);
+                gameCard.appendChild(descDiv);
+                gamesList.appendChild(gameCard);
+            }
+        }
+
+        button.addEventListener('click', function () {
+            clickCount++;
+            button.style.transform = 'scale(' + (1 + clickCount * 0.1) + ')';
+            flower.style.transform = 'scale(' + (1 + clickCount * 0.1) + ')';
+
+            if (clickCount > 10) {
+                valentineContainer.style.display = 'none';
+                gamesContainer.style.display = 'block';
+                createGameCards();
+            }
+        });
+
+        document.addEventListener('mousemove', function (event) {
+            var buttonRect = button.getBoundingClientRect();
+            var mouseX = event.clientX;
+            var mouseY = event.clientY;
+            var buttonX = buttonRect.left + buttonRect.width / 2;
+            var buttonY = buttonRect.top + buttonRect.height / 2;
+
+            var deltaX = mouseX - buttonX;
+            var deltaY = mouseY - buttonY;
+
+            var distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            if (distance < 100) {
+                var newX = buttonRect.left - deltaX * 0.1;
+                var newY = buttonRect.top - deltaY * 0.1;
+
+                button.style.left = newX + 'px';
+                button.style.top = newY + 'px';
+            }
+        });
+    </script>
+</body>
+
+</html>
